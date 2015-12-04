@@ -1,0 +1,296 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jessica Robertson</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">		
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js bower_components/jquery/jquery.js -->
+		<script src="bower_components/jquery/jquery.js"></script>
+    <!-- endbuild -->		
+		
+    <!-- build:js scripts/react-0.14.0/build/react.js -->
+		<script src="scripts/react-0.14.0/build/react.js"></script>
+		<script src="scripts/react-0.14.0/build/react-dom.js"></script>		
+		<script src="scripts/react-0.14.0/build/react-with-addons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>				
+    <!-- endbuild -->		
+		
+		<!-- build:js scripts/ReactElements.js -->
+    <script type="text/babel" src="scripts/ReactElements.js"></script>			
+    <!-- endbuild -->		
+		
+		<!--My Additional Scripts-->
+		<script src="scripts/common.js"></script>					
+		<script src="scripts/navigation.js"></script>				
+		<script src="scripts/cardGame.js"></script>
+		<script src="scripts/madLibs.js"></script>				
+	
+  </head>
+  <body>
+	<div class="wrapper">
+		<header>
+			<nav class="navbar">
+				<div class="container">
+					<div class="navbar-header visible-xs">
+							<!--Consider moving data-toggle="collapse" to this div rather than the button only-->
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand logo-text" id="navbar-xs-title" href="Index.html">Jessica Robertson</a>
+					</div>
+					<div class="collapse navbar-collapse" id="main-navbar">			
+						<ul class="nav navbar-nav" >
+							<li class="hidden-xs"><a class="navbar-brand logo-text" href="JessicaRobertson.html">Jessica Robertson</a></li>
+							<li class="active"><a href="#jrHome" data-toggle="tab"><i class="fa fa-home hidden-xs"></i>Home</a></li>
+							<li class="dropdown hidden-xs">
+								<a href="javascript:void(0);" data-toggle="dropdown">
+									<i class="fa fa-th"></i>Games
+									
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#jrMemoryGame" data-toggle="tab">Memory Game</a></li>		
+									<li><a href="#jrMadLibs" data-toggle="tab">Mad Libs</a></li>											
+								</ul>
+							</li>		
+							<li class="visible-xs dropdown-header">Games</li>
+							<li class="visible-xs nav-sub-item"><a href="#jrMemoryGame" data-toggle="tab">Memory Game</a></li>		
+							<li class="visible-xs nav-sub-item"><a href="#jrMadLibs" data-toggle="tab">Mad Libs</a></li>									
+							<li><a href="#jrAbout" data-toggle="tab"><i class="fa fa-user hidden-xs"></i>About</a></li>							
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="tab-content">
+				<div class="tab-pane active" id="jrHome">
+					<h2 class="logo-text">Welcome</h2>
+					<p>My name is Jessica Robertson and I am a UX designer working out of Guelph, Ontario. I love front-end web development so I created this site as a personal playground. Not knowing what to put on the site initially, I ended up adding a couple games. Eureka! My site now has a purpose and an audience... my 2 kids!</p>
+					<p>Here are the games I have so far, I'd like to keep adding more as time permits...</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="panel panel-primary">
+								<div class="panel-heading game-tile" id="showMemoryGame">
+									<i class="fa fa-clone"></i>Memory Game
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="panel panel-primary">
+								<div class="panel-heading game-tile" id="showMadLibs">
+									<i class="fa fa-comments"></i>Mad Libs
+								</div>
+							</div>
+						</div>							
+					</div>
+				</div>
+				
+				
+				
+				<!--This draws the "card-box" div and everything within using react.
+				However, my game scripts aren't firing properly afterwards because React
+				is not done rendering. Waiting for window load only works in Chrome and not IE Once this is resolved, use react for MadLibs inputs too -->
+				<div class="tab-pane" id="jrMemoryGame">		
+
+					<h2 class="logo-text">Memory Game</h2>
+					<div class="" id="memoryGameBoard"></div>			
+				<!--	<div class="card-box">
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>						
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">		
+								<div class="logo"></div>
+								<div class="card-content">									
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>						
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">		
+								<div class="logo"></div>
+								<div class="card-content">									
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>						
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">		
+								<div class="logo"></div>
+								<div class="card-content">									
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>						
+						</div>
+						<div class="card">
+							<div class="card-inner">
+								<div class="logo"></div>
+								<div class="card-content">
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card">
+							<div class="card-inner">		
+								<div class="logo"></div>
+								<div class="card-content">									
+									<i class="fa fa-2x"></i>
+								</div>		
+							</div>							
+						</div>
+						<div class="card-align">
+							<button type="button" class="btn btn-default resetCards">Reset</button><span class="float-text-right">Moves: <span class="numMoves"></span></span>					
+						</div>
+					</div> -->
+				</div>
+				<div class="tab-pane" id="jrMadLibs">
+					<h2 class="logo-text">Mad Libs</h2>
+					<form class="form" id="madLibsForm">
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+							</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>	
+						<div class="form-group">
+							<label class="madLibsLabel hidden-xs"></label>
+							<input type="text" class="form-control madLibsInput" placeholder="">
+						</div>							
+						<button type="button" class="btn btn-default" id="madLibsCreate">Create Story</button>
+					</form>
+					<div id="madLibsStory" hidden>
+						<p id="madLibsStoryContent"></p>
+						<button class="btn btn-default" id="madLibsReset">Create Another</button>
+					</div>
+				</div>
+				<div class="tab-pane" id="jrTicTacToe">
+					<h2 class="logo-text">Tic Tac Toe</h2>
+				</div>
+				<div class="tab-pane" id="jrAbout">
+					<h2 class="logo-text">About</h2>
+					<p>My journey into UX started in June of 2014. At the time I knew a little HTML and CSS but certainly nothing to write home about. Since then, it's been a whirlwind of CSS, LESS, HTML, JavaScript, Bootstrap, etc. Shout out to <a target="_blank" href="https://www.codeschool.com"><i class="fa fa-code"></i> Code School</a> and <a target="_blank" href="http://stackoverflow.com/"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>!</p>
+				</div>		
+			</div>
+		</div>
+		<footer>
+			<div class="container">
+				<span class="pull-right social-media-icons">
+					<a target="_blank" href="https://ca.linkedin.com/in/jesrobertson"><i class="fa fa-linkedin-square"></i></a>					
+					<a target="_blank" href="http://www.facebook.com/jesrobertson"><i class="fa fa-facebook-square"></i></a>		
+					<a target="_blank" href="http://twitter.com/JesRobertson"><i class="fa fa-twitter-square"></i></a>									
+				</span>			
+				<span class="copyright">&#xa9; 2015 Jessica Robertson</span>
+			</div>
+		</footer>
+	</div>
+	<div class="modal" tabindex="-1" id="memoryGameWin"></div>
+	
+
+	<!-- build:js scripts/vendor/bootstrap.js -->
+	<script src="bower_components/bootstrap/js/affix.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/alert.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/dropdown.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/tooltip.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/modal.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/transition.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/button.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/popover.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/carousel.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/scrollspy.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/collapse.js" type="text/javascript">
+	</script><script src="bower_components/bootstrap/js/tab.js" type="text/javascript">
+	</script>
+	<!-- endbuild -->			
+		
+</body>
+</html>
