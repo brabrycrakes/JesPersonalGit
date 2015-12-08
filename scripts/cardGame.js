@@ -25,6 +25,10 @@ function assignCards() {
 		$(obj).addClass('card-content')
 			.addClass(cards[i]);
 	});	
+	
+	//Get the modal set up
+	$('.modal-title').html('Memory Game');
+	$('.modalMessage').html('<i class="fa fa-trophy"></i>Yay! You won in <span class="numMoves"></span> moves.');
 }
 
 function flipCard(card) {
@@ -73,9 +77,9 @@ function flipCard(card) {
 			numMoves ++;
 			$('.numMoves').html(numMoves);
 			//All cards have been matched
-			if (numMatches == totalMatches) {	
-				$('#memoryGameWin').modal('show');
-				$('#memoryGameWin').on('hide.bs.modal', function (event) {
+			if (numMatches == totalMatches) {				
+				$('#modalDialog').modal('show');
+				$('#modalDialog').on('hide.bs.modal', function (event) {
 					assignCards();
 				});					
 			}
@@ -84,8 +88,8 @@ function flipCard(card) {
 }
 
 $(function(){
-	//Initialize Memory Card Game and add click handlers
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+	//Wait for tab to be shown before firing off scripts so that React has a chance to render the board
+	$('a[href="#jrMemoryGame"]').on('shown.bs.tab', function (e) {
 		assignCards();
 		$('.card').click(function () {	
 				flipCard(this);

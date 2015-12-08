@@ -1,3 +1,4 @@
+			//Memory Game
       var MemoryGameCard = React.createClass({
         render: function () {
           return (
@@ -21,8 +22,7 @@
 							<MemoryGameCard /><MemoryGameCard /><MemoryGameCard /><MemoryGameCard />
 							<MemoryGameCard /><MemoryGameCard /><MemoryGameCard /><MemoryGameCard />
 							<div className='card-align'>
-								<p>Moves: <span className='numMoves'></span></p>
-								<button type="button" className='btn btn-default resetCards'>Reset</button>		
+								<button type="button" className="btn btn-default resetCards">Reset</button><span className="float-text-right">Moves: <span className="numMoves"></span></span>
 							</div>
 						</div>
 					);
@@ -34,24 +34,22 @@
         document.getElementById('memoryGameBoard')
       );
 			
-			//TO DO: Make this generic so that I can inject a different title
+			//Modal (used for multiple games)
       var ModalHeader = React.createClass({
         render: function () {
           return (
 						<div className="modal-header">
-							<button type="button" className="close" title="Close"><span>&times;</span></button>						
-							<h4 className="modal-title logo-text">Memory Game</h4>
+							<button type="button" className="close" title="Close" data-dismiss="modal"><span>&times;</span></button>						
+							<h4 className="modal-title logo-text"></h4>
 						</div>					
 					);
         }
       });			
-			
-			//TO DO: Make this generic so that I can inject different content. Also, need to somehow get it to recognize the numMoves var
       var ModalBody = React.createClass({
         render: function () {
           return (
 						<div className="modal-body">
-							<p>Yay! You won in <span className="numMoves"></span> moves.</p>
+							<p className="modalMessage"></p>
 						</div>					
 					);
         }
@@ -69,7 +67,7 @@
       var ModalDialog = React.createClass({
         render: function () {
           return (
-						<div className="modal-dialog">
+						<div className="modal-dialog modal-sm">
 							<div className="modal-content">
 								<ModalHeader />
 								<ModalBody />
@@ -82,5 +80,41 @@
 
       ReactDOM.render(
         <ModalDialog />,
-        document.getElementById('memoryGameWin')
+        document.getElementById('modalDialog')
       );			
+
+			//Mad Libs
+      var MadLibsInput = React.createClass({
+        render: function () {
+          return (
+						<div className="form-group">
+							<label className="madLibsLabel hidden-xs"></label>
+							<input type="text" className="form-control madLibsInput" placeholder="" />
+						</div>		
+					);
+        }
+      });			
+
+      var MadLibsForm = React.createClass({
+        render: function () {
+          return (
+						<form className="form" id="madLibsForm">
+								<MadLibsInput />
+								<MadLibsInput />					
+								<MadLibsInput />
+								<MadLibsInput />
+								<MadLibsInput />		
+								<MadLibsInput />
+								<MadLibsInput />
+								<MadLibsInput />					
+								<button type="button" className="btn btn-default" id="madLibsCreate">Create Story</button>			
+						</form>
+					);
+        }
+      });			
+
+      ReactDOM.render(
+        <MadLibsForm />,
+        document.getElementById('madLibsFormWrapper')
+      );						
+			

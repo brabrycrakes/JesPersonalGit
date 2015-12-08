@@ -3,12 +3,14 @@
 
 @jrPrimary: darken(steelblue, 5%);
 @brand-primary: @jrPrimary;
+@header-footer: #333;
+@logo-font: "Courgette", cursive;
 @card-color: @jrPrimary;
 @card-inner-border: #eee;
 @card-matched-bg: #f5f5f5;
 @card-matched: #ccc;
-@logo-font: "Bradley Hand ITC", Georgia, Serif;
-@header-footer: #333;
+@ticTacToeBoard-color: #ccc;
+@jrBorder-radius: 3px;
 
 html, body {
 	margin: 0;
@@ -19,7 +21,7 @@ html, body {
 .wrapper {
 	min-height: 100%;
 	position: relative;
-	padding-bottom: 15px;
+	padding-bottom: 35px;
 }
 footer {
    width: 100%;
@@ -51,12 +53,12 @@ header, footer {
 }
 .logo {
 	.logo-text;
-	font-size: 2.2em;
+	font-size: 2.1em;
 	color: white;		
 	text-align: center;
 	vertical-align: middle;	
-	width: 60px;
-	height: 60px;
+	width: 56px;
+	height: 56px;
 	box-sizing: border-box;
 	border: 2px solid white;
 	border-radius: 50%;
@@ -102,15 +104,9 @@ header .navbar {
 		padding-top: 0;
 		padding-bottom: 0;		
 	}
-	.dropdown-header {
-		font-size: 14px;
-		padding-left: 15px;
-		padding-right: 15px;		
-	}
-	.nav-sub-item {
-		text-indent: 10px;
-		font-size: 14px;
-	}
+}
+.btn, .form-control {
+	border-radius: @jrBorder-radius;
 }
 .copyright {
 	float: left;
@@ -188,14 +184,14 @@ header .navbar {
 	}	
 }
 .card-content {
-	width: 40px;
-	height: 40px;
+	width: 42px;
+	height: 42px;
 	text-align: center;
 }
 .card-content i {
 	font-family: FontAwesome;
 	font-weight: normal;
-	font-size: 37px;
+	font-size: 39px;
 	position: relative;
 	top: 50%;
 }
@@ -241,6 +237,30 @@ header .navbar {
 	float: right;
 	padding-top: 7px;
 }
+.modal-dialog {
+	margin-top: 60px;
+}
+.modal-content {
+	border-radius: @jrBorder-radius;
+}
+#memoryGameWin {
+	.modal-header {
+		padding-bottom: 0;	
+		border-bottom: none;
+	}
+	.modal-body {
+		padding-bottom: 0;
+	}		
+	.modal-footer {
+		padding-top: 0;
+		border-top: none;
+	}	
+}
+i.fa-trophy {
+	color: goldenrod;
+	font-size: 1.4em;
+	margin-right: 10px;
+}
 .madLibsInput {
   &::-webkit-input-placeholder {
       color: transparent;
@@ -255,9 +275,60 @@ header .navbar {
       color: transparent;
   }
 }
-.madLibUserValue {
+.madLibUserValue,
+.ticTacToeWinner,
+.ticTacToeTurn
+ {
 	font-weight: bold;
 	color: @jrPrimary;
+}
+.ticTacToeBoard {
+	text-align: center;
+	max-width: 670px;
+	margin: 0 auto;
+	p, h3 {
+		text-align: left;
+	}
+	i {
+		font-size: 100px;
+		padding: 30px 0;
+	}
+	i.fa-times {
+		color: @jrPrimary;
+	}
+	i.fa-circle-o {
+		color: #666;
+	}
+	.row:nth-child(1) .col-xs-4,
+	.row:nth-child(2) .col-xs-4
+	{
+		border-bottom: 8px solid @ticTacToeBoard-color;
+	}
+	.row .col-xs-4:not(:last-child) {
+		border-right: 8px solid @ticTacToeBoard-color;
+	}	
+	.row:last-child {
+		text-align: left;
+		margin-top: 10px;
+	}
+	.ticTacToeSpace {
+		cursor: pointer;
+		&:hover {
+			background-color: #f5f5f5;
+		}
+		i {
+			visibility: hidden;
+		}
+	}
+	.ticTacToeSpace.ticTacToeSpace-taken {
+		cursor: default;
+		&:hover {
+			background-color: transparent;
+		}
+		i {
+			visibility: visible;
+		}		
+	}	
 }
 @media screen and (max-width: 767px) {
 	header {
@@ -266,6 +337,39 @@ header .navbar {
 		{
 			float: none;
 			text-align: left;
+		}
+		.navbar {
+			.nav > li > ul.dropdown-menu {
+				font-size: 1em;
+			}
+			.nav > li.dropdown.open > .dropdown-menu > li.active a:hover,
+			.nav > li.dropdown.open > .dropdown-menu > li.active a:focus,
+			.nav > li.dropdown.open > .dropdown-menu > li.active a,
+			.nav > li.dropdown.open > .dropdown-menu > li a:hover,
+			.nav > li.dropdown.open > .dropdown-menu > li a:focus			
+			{
+				background-color: @header-footer;
+				color: white;
+			}	
+			.dropdown.open > a,
+			.dropdown.open > a:hover,	
+			.dropdown.open.active > a,		
+			.dropdown.open.active > a:hover,				
+			{
+				color: jrPrimary;
+				font-size: 0.9em;
+				padding-left: 15px;
+				padding-right: 15px;		
+				color: #666;
+				border-top: 1px solid #444;
+				cursor: text;
+			}	
+			.nav-sub-item {
+				&:last-child {
+					border-bottom: 1px solid #444;			
+					padding-bottom: 5px;							
+				}
+			}
 		}
 	}
 	.madLibsInput {
@@ -296,7 +400,7 @@ header .navbar {
 		margin-bottom: 5px;		
 	}
 	.card-box {
-		width: 402px;
+		width: 388px;
 	}
 	.card {
 		margin-top: 5px;
@@ -311,7 +415,7 @@ header .navbar {
 		}		
 		.card-content i {
 			top:20%;
-			font-size: 23px;
+			font-size: 26px;
 		}
 	}	
 }
@@ -323,35 +427,40 @@ header .navbar {
 		font-size: 1.3em;
 	}		
 	.card-box {
-		width: 305px;
+		width: 291px;
 	}
-	.copyright {
-		font-size: 11px;
-		padding-top: 3px;
-	}
+	.ticTacToeBoard i {
+		font-size: 60px;
+		padding: 20px 0;		
+	}	
 }
 @media screen and (max-width: 334px) {
 	.card-box {
-		width: 244px;
+		width: 251px;
 	}
 	.card {
-		margin-left: 1px;
-		margin-right: 1px;
+		margin: 4px 5px;
 	}
 	.card:nth-child(3n+1) {
 		margin-left: 0;
 	}	
-	.card:nth-child(3n-1) {
+	.card:nth-child(3n) {
 		margin-right: 0;
 	}		
 	.card-align {
 		margin: 0 0;
 	}
-	.social-media-icons i {
-		padding-top: 3px;
-		font-size: 20px;
-		margin-left: 1px;
-	}	
+	.ticTacToeBoard i {
+		font-size: 50px;
+		padding: 15px 0;		
+	}
+	.copyright {
+		font-size: 13px;
+	}
+	.ticTacToeBoard button {
+		.btn-block;
+		margin-bottom: 5px;
+	}
 }
 
 

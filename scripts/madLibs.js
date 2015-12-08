@@ -55,7 +55,6 @@ function generateMadLibsStory() {
       var entry = $(obj).val();
       madLibsEntries.push(entry);
 		});
-				console.log(madLibsEntries);
 
 		//Distribute them into the story
 		$('#madLibsStory .madLibUserValue').each(function (i, obj) {
@@ -68,20 +67,22 @@ function generateMadLibsStory() {
 }
 
 $(function(){
-	//Initialize Mad Libs Game and add click handlers	
-	initializeMadLibs();
-
-	$('#madLibsCreate').click(function () {	
-		generateMadLibsStory();
-	});
-	
-	$('#madLibsReset').click(function () {	
+	//Wait for tab to be shown before firing off scripts so that React has a chance to render the form
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		initializeMadLibs();
-	});	
-	
-	$('#madLibsForm input').keypress(function() {
-		if ( event.which == 13 ) {
+
+		$('#madLibsCreate').click(function () {	
 			generateMadLibsStory();
-		}
+		});
+		
+		$('#madLibsReset').click(function () {	
+			initializeMadLibs();
+		});	
+		
+		$('#madLibsForm input').keypress(function(event) {
+			if ( event.which == 13 ) {
+				generateMadLibsStory();
+			}
+		});		
 	});		
 });
